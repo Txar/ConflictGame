@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Conflict game</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body id="body" onload="load()">
+        <canvas id="canvas"></canvas>
+        <br>
+        <button type="button" id="conflict_button" class="conflict">conflict</button>
+        <div id="open_button"><img src="settings_gray.png"></div>
+        <div id="game_over_screen" hidden>
+            <h2 id="score"></h2>
+            <div id="restart_button"><h2>restart</h2></div>
+        </div>
+        <div id="settings" hidden>
+            <h2>Settings</h2>
+            <table>    
+                <tr><td><label>Minimum triangles: </label></td><td><input id="min_triangles" type="number"></td></tr>
+                <tr><td><label>Maximum triangles: </label></td><td><input id="max_triangles" type="number"></td></tr>
+                <tr><td><label>Minimum conflicts: </label></td><td><input id="min_conflicts" type="number"></td></tr>
+                <tr><td><label>Maximum conflicts: </label></td><td><input id="max_conflicts" type="number"></td></tr>
+                <tr><td><label>Amount of boards: </label></td><td><input id="boards" type="number"></td></tr>
+                <tr><td><label>Hax: </label></td><td><input id="hax" type="checkbox"></td></tr>
+            </table>
+            <br><br>
+            <a href="https://www.flaticon.com/free-icons/settings" title="settings icons">Settings icon created by Freepik - Flaticon</a>
+            <div id="save_close_button"><h3>save & close</h3></div>
+            <div id="close_button"><h3>close</h3></div>
+        </div>
+        <script src="main.js"></script>
+    </body>
+</html>
