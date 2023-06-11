@@ -1,13 +1,39 @@
-let triangle = [
+const triangle_large = [
     {x: 0, y: 0},
     {x: 0, y: 60},
     {x: 75, y: 30}
 ];
 
-let triangle_center = {
+const triangle_large_center = {
     x: 25,
     y: 30
+};
+
+const triangle_medium = [
+    {x: 0, y: 0},
+    {x: 0, y: 40},
+    {x: 48, y: 20}
+];
+
+const triangle_medium_center = {
+    x: 16,
+    y: 20
+};
+
+const triangle_small = [
+    {x: 0, y: 0},
+    {x: 0, y: 30},
+    {x: 36, y: 15}
+]
+
+const triangle_small_center = {
+    x: 12,
+    y: 15
 }
+
+let triangle_size = "medium";
+
+let triangle = triangle_medium, triangle_center = triangle_medium_center;
 
 let intervalId;
 let body;
@@ -264,7 +290,7 @@ function conflicts(x, y, deg) {
 
     triangles.forEach((t) => {
         let point = getPoint(t.x, t.y, t.deg);
-        if (isPointingAt(po.x, po.y, deg, point.x, point.y) && isRoundEqual(deg, limit(t.deg + 180, 360), 0.1)) {
+        if (isPointingAt(po.x, po.y, deg, point.x, point.y) && isRoundEqual(deg, limit(t.deg + 180, 360), 4)) {
             if (isPointingAt(point.x, point.y, t.deg, po.x, po.y)) {
                 c = true;
                 conflict_list.push({x: x, y: y, deg: deg, x2: t.x, y2: t.y, deg2: t.deg});
@@ -572,7 +598,7 @@ function _update(first_time = false) {
     frame++;
 }
 
-function isPointingAt(x1, y1, deg, x2, y2, margin = 12) {
+function isPointingAt(x1, y1, deg, x2, y2, margin = 16) {
     let distance = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
     let po = rotatePoint(distance, 0, deg, false);
     po.x += x1;
@@ -653,6 +679,21 @@ function updateSettings() {
     max_conflicts = Number(document.getElementById("max_conflicts").value);
     boards = Number(document.getElementById("boards").value);
     hax = document.getElementById("hax").checked;
+    triangle_size = document.getElementById("triangle_size").value;
+    switch (triangle_size) {
+        case "small":
+            triangle = triangle_small;
+            triangle_center = triangle_small_center;
+            break;
+        case "medium":
+            triangle = triangle_medium;
+            triangle_center = triangle_medium_center;
+            break;
+        case "large":
+            triangle = triangle_large;
+            triangle_center = triangle_large_center;
+            break;
+    }
     start();
     document.getElementById("settings").hidden = true;
 }
